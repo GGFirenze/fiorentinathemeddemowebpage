@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACF Fiorentina - Official Website Demo</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚜️</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --viola-primary: #5B2D82;
+            --viola-dark: #3D1E5C;
+            --viola-light: #7B4BA2;
+            --viola-accent: #9B6BC2;
+            --gold: #C9A227;
+            --white: #FFFFFF;
+            --gray-light: #F5F5F5;
+            --gray: #E0E0E0;
+            --gray-dark: #666666;
+            --text-dark: #1A1A1A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Cookie Consent Modal */
+        .cookie-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cookie-modal.active {
+            display: flex;
+        }
+
+        .cookie-modal-content {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cookie-modal-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--viola-primary), var(--viola-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 36px;
+        }
+
+        .cookie-modal-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--viola-dark);
+            margin-bottom: 16px;
+        }
+
+        .cookie-modal-text {
+            font-size: 14px;
+            color: var(--gray-dark);
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .cookie-modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cookie-btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cookie-btn-accept {
+            background: linear-gradient(135deg, var(--viola-primary), var(--viola-light));
+            color: var(--white);
+        }
+
+        .cookie-btn-accept:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(91, 45, 130, 0.4);
+        }
+
+        .cookie-btn-reject {
+            background: var(--gray-light);
+            color: var(--gray-dark);
+        }
+
+        .cookie-btn-reject:hover {
+            background: var(--gray);
+        }
+
+        .cookie-btn-info {
+            background: transparent;
+            color: var(--viola-primary);
+            text-decoration: underline;
+            padding: 14px 16px;
+        }
+
+        .blur-content {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+
+        /* Header */
+        .header {
+            background: var(--viola-primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background: var(--viola-dark);
+            padding: 8px 0;
+        }
+
+        .header-top-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+        }
+
+        .header-top a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+
+        .header-top a:hover {
+            opacity: 1;
+        }
+
+        .header-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-item {
+            color: var(--white);
+            text-decoration: none;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--viola-dark);
+        }
+
+        .btn-primary:hover {
+            background: #D4AF37;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--viola-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--viola-dark) 0%, var(--viola-primary) 50%, var(--viola-light) 100%);
+            min-height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/></svg>') repeat;
+            background-size: 200px;
+            opacity: 0.3;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-news {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .hero-main-news {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 350px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .hero-main-news:hover {
+            transform: scale(1.02);
+        }
+
+        .hero-main-news::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        }
+
+        .news-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--gold);
+            color: var(--viola-dark);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .hero-news-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-news-title {
+            color: var(--white);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .hero-news-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+        }
+
+        .hero-secondary-news {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .secondary-news-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .secondary-news-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .secondary-news-card h4 {
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .secondary-news-card span {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+        }
+
+        /* Next Match Section */
+        .next-match {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .next-match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .next-match-title {
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .competition-badge {
+            background: var(--gold);
+            color: var(--viola-dark);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .match-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 24px;
+        }
+
+        .team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .team-logo {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .team-name {
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .vs-text {
+            color: var(--gold);
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .match-details {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .match-date {
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .match-venue {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+        }
+
+        .promo-badge {
+            background: linear-gradient(135deg, #FF6B35, #FF8C42);
+            color: var(--white);
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .match-cta {
+            margin-top: auto;
+        }
+
+        .match-cta .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Schedule Section */
+        .schedule {
+            padding: 60px 0;
+            background: var(--gray-light);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--viola-dark);
+            text-transform: uppercase;
+        }
+
+        .section-tabs {
+            display: flex;
+            gap: 8px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            background: var(--white);
+            color: var(--gray-dark);
+        }
+
+        .tab.active {
+            background: var(--viola-primary);
+            color: var(--white);
+        }
+
+        .tab:hover:not(.active) {
+            background: var(--gray);
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .schedule-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .schedule-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .schedule-competition {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .schedule-competition span {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--viola-primary);
+            text-transform: uppercase;
+        }
+
+        .schedule-teams {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .schedule-team {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .schedule-team-logo {
+            width: 40px;
+            height: 40px;
+            background: var(--gray-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .schedule-team-name {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .schedule-vs {
+            color: var(--gray-dark);
+            font-weight: 600;
+        }
+
+        .schedule-datetime {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid var(--gray);
+        }
+
+        .schedule-datetime span {
+            font-size: 13px;
+            color: var(--gray-dark);
+        }
+
+        .schedule-datetime strong {
+            color: var(--viola-primary);
+        }
+
+        /* News Section */
+        .news-section {
+            padding: 60px 0;
+            background: var(--white);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .news-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .news-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-card-image {
+            height: 180px;
+            background: linear-gradient(135deg, var(--viola-primary), var(--viola-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            position: relative;
+        }
+
+        .news-card-category {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--viola-dark);
+            color: var(--white);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .news-card-content {
+            padding: 20px;
+        }
+
+        .news-card-date {
+            font-size: 12px;
+            color: var(--gray-dark);
+            margin-bottom: 8px;
+        }
+
+        .news-card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .news-card-share {
+            display: flex;
+            gap: 12px;
+        }
+
+        .share-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .share-icon:hover {
+            background: var(--viola-primary);
+            color: var(--white);
+        }
+
+        .view-all-btn {
+            display: block;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* InViola Section */
+        .inviola-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--viola-dark) 0%, var(--viola-primary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .inviola-section::before {
+            content: '⚜️';
+            position: absolute;
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 400px;
+            opacity: 0.1;
+        }
+
+        .inviola-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .inviola-text h2 {
+            color: var(--gold);
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .inviola-text p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .inviola-features {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .inviola-feature {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--white);
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .inviola-feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .inviola-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .inviola-card-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            margin: 0 auto 24px;
+        }
+
+        .inviola-card h3 {
+            color: var(--white);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .inviola-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        /* Viola Park Section */
+        .viola-park {
+            padding: 80px 0;
+            background: var(--gray-light);
+        }
+
+        .viola-park-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .viola-park-main {
+            background: linear-gradient(135deg, #1A472A 0%, #2D5A3D 100%);
+            border-radius: 20px;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 400px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .viola-park-main:hover {
+            transform: scale(1.02);
+        }
+
+        .viola-park-main::before {
+            content: '🏟️';
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            font-size: 120px;
+            opacity: 0.3;
+        }
+
+        .viola-park-main h2 {
+            color: var(--white);
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .viola-park-main p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 28px;
+            max-width: 500px;
+        }
+
+        .viola-park-features {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .viola-park-feature {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .viola-park-feature:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .viola-park-feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--viola-primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .viola-park-feature-text h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .viola-park-feature-text p {
+            font-size: 13px;
+            color: var(--gray-dark);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 60px 0;
+            background: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: var(--gray-light);
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            background: var(--viola-primary);
+            color: var(--white);
+            transform: translateY(-8px);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--viola-primary);
+            margin-bottom: 8px;
+        }
+
+        .stat-card:hover .stat-number {
+            color: var(--gold);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--viola-dark);
+            padding: 60px 0 30px;
+            color: var(--white);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 16px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .social-icon:hover {
+            background: var(--gold);
+            transform: translateY(-4px);
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-partners {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .partner-logo {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* App Download Banner */
+        .app-banner {
+            background: var(--gold);
+            padding: 20px 0;
+        }
+
+        .app-banner-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .app-banner-text {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--viola-dark);
+        }
+
+        .app-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .app-btn {
+            background: var(--viola-dark);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .app-btn:hover {
+            background: var(--text-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .schedule-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            
+            .hero-secondary-news {
+                grid-template-columns: 1fr;
+            }
+            
+            .schedule-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .inviola-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .viola-park-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .app-banner-content {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cookie Consent Modal -->
+    <div class="cookie-modal" id="cookieModal">
+        <div class="cookie-modal-content">
+            <div class="cookie-modal-icon">🔒</div>
+            <h2 class="cookie-modal-title">Rispettiamo la tua privacy</h2>
+            <p class="cookie-modal-text">
+                Utilizziamo cookie e tecnologie simili per migliorare la tua esperienza sul nostro sito, 
+                analizzare il traffico e personalizzare i contenuti. I tuoi dati, le tue scelte.
+            </p>
+            <div class="cookie-modal-buttons">
+                <button class="cookie-btn cookie-btn-info">Scopri di più</button>
+                <button class="cookie-btn cookie-btn-reject" id="rejectCookies">Rifiuta</button>
+                <button class="cookie-btn cookie-btn-accept" id="acceptCookies">Accetta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <div id="mainContent">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-top">
+                <div class="header-top-container">
+                    <a href="#">FAQ</a>
+                    <a href="#">🇮🇹 Italiano</a>
+                    <a href="#">🇬🇧 English</a>
+                </div>
+            </div>
+            <div class="header-main">
+                <a href="#" class="logo">
+                    <div class="logo-icon">⚜️</div>
+                    <span class="logo-text">ACF FIORENTINA</span>
+                </a>
+                <nav class="nav">
+                    <a href="#" class="nav-item">Seasons</a>
+                    <a href="#" class="nav-item">Teams</a>
+                    <a href="#" class="nav-item">News & Media</a>
+                    <a href="#" class="nav-item">Club</a>
+                    <a href="#" class="nav-item">Fans</a>
+                    <a href="#" class="nav-item">Tickets</a>
+                    <a href="#" class="nav-item">InViola</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="#" class="btn btn-outline">🛒 Shop</a>
+                    <a href="#" class="btn btn-primary">🎟️ Buy Tickets</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-news">
+                    <div class="hero-main-news">
+                        <span class="news-badge">Breaking News</span>
+                        <div class="hero-news-content">
+                            <h2 class="hero-news-title">Harrison joins Fiorentina</h2>
+                            <p class="hero-news-subtitle">The English winger arrives on loan from Leeds United</p>
+                        </div>
+                    </div>
+                    <div class="hero-secondary-news">
+                        <div class="secondary-news-card">
+                            <h4>Bologna 1-2 Fiorentina: Mandragora and Piccoli secure victory</h4>
+                            <span>18 Jan 2026</span>
+                        </div>
+                        <div class="secondary-news-card">
+                            <h4>Coach Vanoli's comments following win over Bologna</h4>
+                            <span>18 Jan 2026</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="next-match">
+                    <div class="next-match-header">
+                        <span class="next-match-title">Next Match</span>
+                        <span class="competition-badge">Serie A</span>
+                    </div>
+                    <div class="match-info">
+                        <div class="team">
+                            <div class="team-logo">⚜️</div>
+                            <span class="team-name">Fiorentina</span>
+                        </div>
+                        <span class="vs-text">VS</span>
+                        <div class="team">
+                            <div class="team-logo">🔴</div>
+                            <span class="team-name">Cagliari</span>
+                        </div>
+                    </div>
+                    <div class="match-details">
+                        <p class="match-date">Sat 24 Jan 2026 - 18:00</p>
+                        <p class="match-venue">Stadio Artemio Franchi</p>
+                    </div>
+                    <div class="promo-badge">🔥 PROMO VIOLA DAYS -50%</div>
+                    <div class="match-cta">
+                        <a href="#" class="btn btn-primary">🎟️ Get Tickets</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section class="schedule">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">On Schedule</h2>
+                    <div class="section-tabs">
+                        <button class="tab active" data-tab="male">Male</button>
+                        <button class="tab" data-tab="female">Female</button>
+                        <button class="tab" data-tab="u20">U20</button>
+                    </div>
+                </div>
+                <div class="schedule-grid">
+                    <div class="schedule-card">
+                        <div class="schedule-competition">
+                            <span>🏆 Coppa Italia - 8th Finals</span>
+                        </div>
+                        <div class="schedule-teams">
+                            <div class="schedule-team">
+                                <div class="schedule-team-logo">⚜️</div>
+                                <span class="schedule-team-name">Fiorentina</span>
+                            </div>
+                            <span class="schedule-vs">vs</span>
+                            <div class="schedule-team">
+                                <div class="schedule-team-logo">🔵</div>
+                                <span class="schedule-team-name">Como</span>
+                            </div>
+                        </div>
+                        <div class="schedule-datetime">
+                            <span>Tue 27 Jan 2026</span>
+                            <strong>21:00</strong>
+                        </div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-competition">
+                            <span>⚽ Serie A - Matchday 24</span>
+                        </div>
+                        <div class="schedule-teams">
+                            <div class="schedule-team">
+                                <div class="schedule-team-logo">⚜️</div>
+                                <span class="schedule-team-name">Fiorentina</span>
+                            </div>
+                            <span class="schedule-vs">vs</span>
+                            <div class="schedule-team">
+                                <div class="schedule-team-logo">🐂</div>
+                                <span class="schedule-team-name">Torino</span>
+                            </div>
+                        </div>
+                        <div class="schedule-datetime">
+                            <span>Sat 7 Feb 2026</span>
+                            <strong>20:45</strong>
+                        </div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-competition">
+                            <span>⚽ Serie A - Matchday 25</span>
+                        </div>
+                        <div class="schedule-teams">
+                            <div class="schedule-team">
+                                <div class="schedule-team-logo">🦅</div>
+                                <span class="schedule-team-name">Lazio</span>
+                            </div>
+                            <span class="schedule-vs">vs</span>
+                            <div class="schedule-team">
+                                <div class="schedule-team-logo">⚜️</div>
+                                <span class="schedule-team-name">Fiorentina</span>
+                            </div>
+                        </div>
+                        <div class="schedule-datetime">
+                            <span>Sun 15 Feb 2026</span>
+                            <strong>15:00</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section class="news-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Latest News</h2>
+                </div>
+                <div class="news-grid">
+                    <div class="news-card">
+                        <div class="news-card-image">⚽</div>
+                        <div class="news-card-content">
+                            <span class="news-card-category">Male</span>
+                            <span class="news-card-date">19 Jan 2026</span>
+                            <h3 class="news-card-title">Harrison joins Fiorentina on loan from Leeds United</h3>
+                            <div class="news-card-share">
+                                <span class="share-icon">📱</span>
+                                <span class="share-icon">🐦</span>
+                                <span class="share-icon">📘</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-card-image">🎬</div>
+                        <div class="news-card-content">
+                            <span class="news-card-category">Highlights</span>
+                            <span class="news-card-date">18 Jan 2026</span>
+                            <h3 class="news-card-title">Highlights: Bologna 1-2 Fiorentina</h3>
+                            <div class="news-card-share">
+                                <span class="share-icon">📱</span>
+                                <span class="share-icon">🐦</span>
+                                <span class="share-icon">📘</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-card-image">🎙️</div>
+                        <div class="news-card-content">
+                            <span class="news-card-category">Interviews</span>
+                            <span class="news-card-date">18 Jan 2026</span>
+                            <h3 class="news-card-title">Coach Paolo Vanoli's comments after the victory</h3>
+                            <div class="news-card-share">
+                                <span class="share-icon">📱</span>
+                                <span class="share-icon">🐦</span>
+                                <span class="share-icon">📘</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-card-image">👔</div>
+                        <div class="news-card-content">
+                            <span class="news-card-category">Club</span>
+                            <span class="news-card-date">18 Jan 2026</span>
+                            <h3 class="news-card-title">Commisso family words following Bologna victory</h3>
+                            <div class="news-card-share">
+                                <span class="share-icon">📱</span>
+                                <span class="share-icon">🐦</span>
+                                <span class="share-icon">📘</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="view-all-btn">
+                    <a href="#" class="btn btn-primary">View All News →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- InViola Section -->
+        <section class="inviola-section">
+            <div class="container">
+                <div class="inviola-content">
+                    <div class="inviola-text">
+                        <h2>We are the Viola Generation</h2>
+                        <p>Become part of the great InViola family. Get your InViola Card or register it if you already have one. Accumulate points, collect rewards and win exclusive prizes.</p>
+                        <div class="inviola-features">
+                            <div class="inviola-feature">
+                                <div class="inviola-feature-icon">🎟️</div>
+                                <span>Priority access to tickets and events</span>
+                            </div>
+                            <div class="inviola-feature">
+                                <div class="inviola-feature-icon">🎁</div>
+                                <span>Exclusive prizes and experiences</span>
+                            </div>
+                            <div class="inviola-feature">
+                                <div class="inviola-feature-icon">⭐</div>
+                                <span>Earn points with every purchase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inviola-card">
+                        <div class="inviola-card-icon">⚜️</div>
+                        <h3>InViola Card</h3>
+                        <p>Your passport to the Viola world</p>
+                        <a href="#" class="btn btn-primary">Join Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Viola Park Section -->
+        <section class="viola-park">
+            <div class="container">
+                <div class="viola-park-grid">
+                    <div class="viola-park-main">
+                        <h2>Viola Park</h2>
+                        <p>Experience the most beautiful sports centre in Europe. Take part in official football matches, watch training sessions, attend events.</p>
+                        <a href="#" class="btn btn-primary">Discover Viola Park</a>
+                    </div>
+                    <div class="viola-park-features">
+                        <div class="viola-park-feature">
+                            <div class="viola-park-feature-icon">🏋️</div>
+                            <div class="viola-park-feature-text">
+                                <h4>Training Sessions</h4>
+                                <p>Watch the team prepare</p>
+                            </div>
+                        </div>
+                        <div class="viola-park-feature">
+                            <div class="viola-park-feature-icon">🎉</div>
+                            <div class="viola-park-feature-text">
+                                <h4>Events</h4>
+                                <p>Exclusive experiences</p>
+                            </div>
+                        </div>
+                        <div class="viola-park-feature">
+                            <div class="viola-park-feature-icon">🏟️</div>
+                            <div class="viola-park-feature-text">
+                                <h4>Stadium Tours</h4>
+                                <p>Behind the scenes access</p>
+                            </div>
+                        </div>
+                        <div class="viola-park-feature">
+                            <div class="viola-park-feature-icon">🛍️</div>
+                            <div class="viola-park-feature-text">
+                                <h4>Official Store</h4>
+                                <p>Get your merchandise</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">1926</div>
+                        <div class="stat-label">Founded</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Serie A Titles</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Coppa Italia</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">43K</div>
+                        <div class="stat-label">Stadium Capacity</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Download Banner -->
+        <div class="app-banner">
+            <div class="app-banner-content">
+                <span class="app-banner-text">📱 Download the new ACF Fiorentina App</span>
+                <div class="app-buttons">
+                    <a href="#" class="app-btn">🍎 App Store</a>
+                    <a href="#" class="app-btn">🤖 Google Play</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="#" class="logo">
+                            <div class="logo-icon">⚜️</div>
+                            <span class="logo-text">ACF FIORENTINA</span>
+                        </a>
+                        <p style="color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.6;">
+                            ACF Fiorentina S.r.l.<br>
+                            Viale Manfredo Fanti n. 4, Firenze
+                        </p>
+                        <div class="footer-social">
+                            <span class="social-icon">📘</span>
+                            <span class="social-icon">🐦</span>
+                            <span class="social-icon">📸</span>
+                            <span class="social-icon">🎵</span>
+                            <span class="social-icon">📺</span>
+                        </div>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Tickets</h4>
+                        <ul>
+                            <li><a href="#">Men</a></li>
+                            <li><a href="#">Women</a></li>
+                            <li><a href="#">Season Ticket</a></li>
+                            <li><a href="#">Gift Card</a></li>
+                            <li><a href="#">Corporate Hospitality</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Shop</h4>
+                        <ul>
+                            <li><a href="#">Shop Online</a></li>
+                            <li><a href="#">Fiorentina Store</a></li>
+                            <li><a href="#">Kits & Jerseys</a></li>
+                            <li><a href="#">Accessories</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Club</h4>
+                        <ul>
+                            <li><a href="#">Board</a></li>
+                            <li><a href="#">History</a></li>
+                            <li><a href="#">Viola Park</a></li>
+                            <li><a href="#">Academies</a></li>
+                            <li><a href="#">Compliance</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>InViola</h4>
+                        <ul>
+                            <li><a href="#">Join InViola</a></li>
+                            <li><a href="#">Prizes Catalog</a></li>
+                            <li><a href="#">Contests</a></li>
+                            <li><a href="#">Fiorentina Baby</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="footer-copyright">© 2026 ACF Fiorentina S.r.l. All rights reserved. Demo for Amplitude Session Replay.</p>
+                    <div class="footer-partners">
+                        <span class="partner-logo">KAPPA</span>
+                        <span class="partner-logo">MEDIACOM</span>
+                        <span class="partner-logo">ESTRA</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Amplitude SDK - Manual Loading for GDPR Compliance -->
+    <script>
+        // Amplitude API Key
+        const AMPLITUDE_API_KEY = '240283b380a6942a8345e21d1e78542d';
+
+        // Cookie consent management
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('cookie_consent');
+            if (consent === 'accepted') {
+                // User already consented - initialize Amplitude
+                loadAndInitializeAmplitude();
+            } else if (consent === 'rejected') {
+                // User rejected - don't show modal, don't load Amplitude
+                console.log('Cookie consent was previously rejected');
+            } else {
+                // No consent recorded - show modal
+                showCookieModal();
+            }
+        }
+
+        function showCookieModal() {
+            const modal = document.getElementById('cookieModal');
+            const mainContent = document.getElementById('mainContent');
+            modal.classList.add('active');
+            mainContent.classList.add('blur-content');
+        }
+
+        function hideCookieModal() {
+            const modal = document.getElementById('cookieModal');
+            const mainContent = document.getElementById('mainContent');
+            modal.classList.remove('active');
+            mainContent.classList.remove('blur-content');
+        }
+
+        // Load Amplitude SDK dynamically (only after consent)
+        function loadAndInitializeAmplitude() {
+            // Load the Amplitude script loader
+            const script = document.createElement('script');
+            script.src = `https://cdn.amplitude.com/script/${AMPLITUDE_API_KEY}.js`;
+            script.async = true;
+            
+            script.onload = function() {
+                // Add Session Replay plugin with sampleRate: 1 for demo
+                window.amplitude.add(window.sessionReplay.plugin({
+                    sampleRate: 1
+                }));
+
+                // Initialize Amplitude with autocapture configuration
+                // Enabling: attribution, sessions, pageViews, elementInteractions, frustrationInteractions
+                // Disabling: formInteractions, fileDownloads
+                window.amplitude.init(AMPLITUDE_API_KEY, {
+                    fetchRemoteConfig: true,
+                    autocapture: {
+                        attribution: true,
+                        sessions: true,
+                        pageViews: true,
+                        formInteractions: false,
+                        fileDownloads: false,
+                        elementInteractions: true,
+                        frustrationInteractions: true
+                    }
+                });
+
+                console.log('✅ Amplitude initialized with Session Replay and Frustration Analytics');
+                console.log('📊 Autocapture enabled: attribution, sessions, pageViews, elementInteractions, frustrationInteractions');
+                console.log('🎬 Session Replay sample rate: 100%');
+            };
+
+            script.onerror = function() {
+                console.error('Failed to load Amplitude SDK');
+            };
+
+            document.head.appendChild(script);
+        }
+
+        // Event listeners for cookie consent buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const acceptBtn = document.getElementById('acceptCookies');
+            const rejectBtn = document.getElementById('rejectCookies');
+
+            acceptBtn.addEventListener('click', function() {
+                localStorage.setItem('cookie_consent', 'accepted');
+                hideCookieModal();
+                loadAndInitializeAmplitude();
+            });
+
+            rejectBtn.addEventListener('click', function() {
+                localStorage.setItem('cookie_consent', 'rejected');
+                hideCookieModal();
+                console.log('User rejected cookies - Amplitude will not be initialized');
+            });
+
+            // Check consent on page load
+            checkCookieConsent();
+        });
+
+        // Tab switching functionality for schedule section
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

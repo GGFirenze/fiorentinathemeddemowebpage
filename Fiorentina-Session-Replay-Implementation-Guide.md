@@ -1,6 +1,6 @@
 # ACF Fiorentina - Amplitude Session Replay Implementation Guide
 
-> A comprehensive guide for implementing Amplitude Browser SDK with Session Replay, Autocapture, and GDPR-compliant consent handling.
+> A comprehensive guide for implementing Amplitude Browser SDK with Session Replay, Autocapture, and GDPR-compliant consent handling. Please note, all customers should always reference Amplitude official documentation first. In particular, please consult the following resources: https://amplitude.com/docs/sdks/analytics/browser/browser-sdk-2; https://amplitude.com/docs/session-replay/session-replay-standalone-sdk. This demo webpage has been created for demonstration purposes. We have created a static webpage that mirrors the amazing Italian football team ACF Fiorentina.
 
 **Author:** Giuliano Giannini  
 **Date:** January 2026  
